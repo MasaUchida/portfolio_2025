@@ -5,7 +5,7 @@ export type Page = {
   publishedAt: string;
   revisedAt: string;
   title: string;
-  tagsName: Tag[];
+  tags: Tag[];
   description: HTMLElement;
 };
 
