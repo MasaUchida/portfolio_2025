@@ -1,4 +1,4 @@
-export type Page = {
+export type Post = {
   id: string;
   createdAt: string;
   updatedAt: string;
