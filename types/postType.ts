@@ -15,5 +15,5 @@ export type Tag = {
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
-  name: string;
+  tagName: string;
 };
