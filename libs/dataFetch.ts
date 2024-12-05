@@ -1,12 +1,32 @@
 import { client } from "./client";
 //import { Post,Tag } from "../types/postType";　一旦型は後回し
+import { Tag } from "../types/postType";
+
+////////////local type////////////
+
+type FilterType =
+  | "equals"
+  | "not_equals"
+  | "contains"
+  | "not_contains"
+  | "less_than"
+  | "greater_than"
+  | "exists"
+  | "not_exists"
+  | "begins_with";
 
 ////////////local function////////////
 
-function makeOrFilterQuery(itmes: string[]) {
-  //入ってきたtagNameの配列の各要素にtagName[equals]を追加し
+function makeOrFilterQuery(
+  fieldId: string,
+  filterType: FilterType,
+  itmes: string[]
+) {
+  //入ってきたtagNameの配列の各要素に${fieldId}[${filterType}]を追加し
   //次の要素と[or]の文字列を挟んでjoinする処理
-  const query = itmes.map((item) => `tagName[equals]${item}`).join("[or]");
+  const query = itmes
+    .map((item) => `${fieldId}[${filterType}]${item}`)
+    .join("[or]");
 
   return query;
 }
@@ -39,9 +59,9 @@ export async function getAllTags() {
 }
 
 export async function getTagsByTagName(tagNames: string[]) {
-  if (tagNames.length === 0) return "";
+  if (tagNames.length === 0) return "tagNames is empty";
 
-  const tagNameQuery = makeOrFilterQuery(tagNames);
+  const tagNameQuery = makeOrFilterQuery("tagName", "equals", tagNames);
 
   const data = await client.get({
     endpoint: "tags",
@@ -53,19 +73,20 @@ export async function getTagsByTagName(tagNames: string[]) {
   return data;
 }
 
-//export async function getPostsByTag(tagNames: string[]) {
-//  //tagNameが入ってきて、タグのIDを取得し、そのIDでPostsに連絡をかける
-//  const tags = getTagsByTagName(tagNames);
-//  const tagIdList = tags
-//    .then((res) => {
-//      return res.join();
-//    })
-//    .catch((e) => {
-//      console.log(e);
-//    });
-//
-//  await client.get({
-//    endpoint: "posts",
-//    //queries:{filters:}
-//  });
-//}
+export async function getPostsByTagName(tagNames: string[]) {
+  if (tagNames.length === 0) return "tagNames is empty";
+
+  const tags = await getTagsByTagName(tagNames);
+  const tagIdList: string[] = tags.contents.map((tag: Tag) => {
+    return tag.id;
+  });
+
+  const query = makeOrFilterQuery("tags", "contains", tagIdList);
+
+  const postByTag = client.get({
+    endpoint: "posts",
+    queries: { filters: query },
+  });
+
+  return postByTag;
+}
