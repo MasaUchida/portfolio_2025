@@ -1,6 +1,9 @@
 import React from "react";
 
-const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+type returnParamsValueType = { slug: string };
+type paramsType<T> = { params: Promise<T> };
+
+const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
   const uriString = (await params).slug;
   console.log(uriString);
 
