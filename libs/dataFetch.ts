@@ -15,23 +15,29 @@ type FilterType =
   | "not_exists"
   | "begins_with";
 
+type FilterCondition = "and" | "or";
+
+type FilterQuery = {
+  fieldId: string;
+  filterType: FilterType;
+  itmes: string[];
+  condition: FilterCondition;
+};
+
 ////////////local function////////////
 
-function makeOrFilterQuery(
-  fieldId: string,
-  filterType: FilterType,
-  itmes: string[]
-) {
-  //入ってきたtagNameの配列の各要素に${fieldId}[${filterType}]を追加し
-  //次の要素と[or]の文字列を挟んでjoinする処理
-  const query = itmes
-    .map((item) => `${fieldId}[${filterType}]${item}`)
-    .join("[or]");
+function makeFilterQuery(queryProps: FilterQuery) {
+  //itemが１つ：fieldId[filterType]item0の文字列
+  //itemが2つ以上：fieldId[filterType]item0の文字列[condition]fieldId[filterType]item1の文字列...
+
+  const query = queryProps.itmes
+    .map((item) => `${queryProps.fieldId}[${queryProps.filterType}]${item}`)
+    .join(`[${queryProps.condition}]`);
 
   return query;
 }
 
-////////////global function////////////
+////////////get post function////////////
 
 export async function getPostById(id: string) {
   const data = await client.get({
@@ -50,6 +56,41 @@ export async function getAllPosts() {
   return data;
 }
 
+export async function getPostsByTagId(tagIds: string[]) {
+  if (tagIds.length === 0) return "tagIds is empty";
+
+  const querySetting: FilterQuery = {
+    fieldId: "tags",
+    filterType: "contains",
+    itmes: tagIds,
+    condition: "or",
+  };
+
+  const query = makeFilterQuery(querySetting);
+
+  const postsByTagId = client.get({
+    endpoint: "posts",
+    queries: { filters: query },
+  });
+
+  return postsByTagId;
+}
+
+export async function getPostsByTagName(tagNames: string[]) {
+  if (tagNames.length === 0) return "tagNames is empty";
+
+  const tags = await getTagsByTagName(tagNames);
+  const tagIds: string[] = tags.contents.map((tag: Tag) => {
+    return tag.id;
+  });
+
+  const postsByTagName = await getPostsByTagId(tagIds);
+
+  return postsByTagName;
+}
+
+////////////get tag function////////////
+
 export async function getAllTags() {
   const data = await client.getAllContents({
     endpoint: "tags",
@@ -61,7 +102,14 @@ export async function getAllTags() {
 export async function getTagsByTagName(tagNames: string[]) {
   if (tagNames.length === 0) return "tagNames is empty";
 
-  const tagNameQuery = makeOrFilterQuery("tagName", "equals", tagNames);
+  const querySetting: FilterQuery = {
+    fieldId: "tagName",
+    filterType: "equals",
+    itmes: tagNames,
+    condition: "or",
+  };
+
+  const tagNameQuery = makeFilterQuery(querySetting);
 
   const data = await client.get({
     endpoint: "tags",
@@ -71,22 +119,4 @@ export async function getTagsByTagName(tagNames: string[]) {
   });
 
   return data;
-}
-
-export async function getPostsByTagName(tagNames: string[]) {
-  if (tagNames.length === 0) return "tagNames is empty";
-
-  const tags = await getTagsByTagName(tagNames);
-  const tagIdList: string[] = tags.contents.map((tag: Tag) => {
-    return tag.id;
-  });
-
-  const query = makeOrFilterQuery("tags", "contains", tagIdList);
-
-  const postByTag = client.get({
-    endpoint: "posts",
-    queries: { filters: query },
-  });
-
-  return postByTag;
 }
