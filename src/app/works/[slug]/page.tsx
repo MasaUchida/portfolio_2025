@@ -1,10 +1,11 @@
 import React from "react";
+import { getAllPosts } from "../../../../libs/dataFetch";
 
 type returnParamsValueType = { slug: string };
 type paramsType<T> = { params: Promise<T> };
 
 const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
-  const uriString = (await params).slug;
+  const uriString = await params;
   console.log(uriString);
 
   return (
@@ -19,7 +20,11 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
 
 export default PostPage;
 
-//メモ
-//propsには{ params : Promise<T> }の型の値が渡ってくる
-//Promiseの中身は{ dynamicRouteName : string }なので型は以下になる
-//{ params : Promise<{ dynamicRouteName : string }> }
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  const postURIs = posts.map((post) => {
+    return { slug: post.postUri };
+  });
+
+  return postURIs;
+}
