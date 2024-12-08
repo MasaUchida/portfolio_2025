@@ -15,11 +15,11 @@ const Home: React.FC = async () => {
   const tagsData = await getTagsByTagName(["タグテスト1", "タグテスト3"]);
   const postByTagName = await getPostsByTagName(["タグテスト1"]);
 
-  const emptyTagsData = await getTagsByTagName([]);
-  const emptyPostByTagName = await getPostsByTagName([]);
+  //const emptyTagsData = await getTagsByTagName([]);
+  //const emptyPostByTagName = await getPostsByTagName([]);
 
-  console.log(emptyPostByTagName);
-  console.log(emptyTagsData);
+  //console.log(emptyPostByTagName);
+  //console.log(emptyTagsData);
 
   return (
     <div>
