@@ -1,8 +1,8 @@
 import React from "react";
 import { TagType } from "../../types/postType";
 
-type OmitTagType = Pick<TagType, "id" | "tagName">;
-type CommponentTagType = OmitTagType & {
+type PickTagType = Pick<TagType, "id" | "tagName">;
+type CommponentTagType = PickTagType & {
   size?: "small" | "medium" | "large";
 };
 
