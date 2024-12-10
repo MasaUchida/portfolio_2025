@@ -9,8 +9,8 @@ const WorksPage: React.FC = () => {
   return (
     <>
       <main>
-        <div className="flex">
-          <div className="-mb-28 p-10 w-full h-96 bg-gray-300 border-b-2 border-r-2 border-black rounded-br-3xl">
+        <div className="-mb-20 flex">
+          <div className="p-10 w-full h-80 bg-gray-300 border-b-2 border-r-2 border-black rounded-br-3xl">
             <div className="mb-6">
               <Image
                 src={"/works-title.png"}
@@ -30,13 +30,13 @@ const WorksPage: React.FC = () => {
             <Header />
           </div>
         </div>
-        <div className="px-10 pb-10 flex gap-12 flex-wrap">
-          <Card id="1" title="カード1"></Card>
-          <Card id="2" title="カード2"></Card>
-          <Card id="3" title="カード3"></Card>
-          <Card id="4" title="カード4"></Card>
-          <Card id="5" title="カード5"></Card>
-          <Card id="6" title="カード6"></Card>
+        <div className="px-10 pb-10 flex gap-12 flex-wrap justify-center">
+          <Card id="1" title="カード1" tagName="Product"></Card>
+          <Card id="2" title="カード2" tagName="Product"></Card>
+          <Card id="3" title="カード3" tagName="Product"></Card>
+          <Card id="4" title="カード4" tagName="Product"></Card>
+          <Card id="5" title="カード5" tagName="Product"></Card>
+          <Card id="6" title="カード6" tagName="Product"></Card>
         </div>
         <Footer />
       </main>
