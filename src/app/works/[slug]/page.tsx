@@ -1,5 +1,7 @@
 import React from "react";
 import { getAllPosts } from "../../../../libs/dataFetch";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 
 type returnParamsValueType = { slug: string };
 type paramsType<T> = { params: Promise<T> };
@@ -11,8 +13,10 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
   return (
     <>
       <main>
+        <Header />
         <p>postページだよ</p>
         <p>{`${uriString}`}</p>
+        <Footer />
       </main>
     </>
   );

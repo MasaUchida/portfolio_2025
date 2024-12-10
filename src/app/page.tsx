@@ -1,28 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-//import { Post, Tag } from "../../types/postType";
-//import {
-//  getAllPosts,
-//  getAllTags,
-//  getPostById,
-//  getTagsByTagName,
-//  getPostsByTagName,
-//} from "../../libs/dataFetch";
+import Header from "../components/Header";
 
 const Home: React.FC = async () => {
-  //const postData = await getAllPosts();
-  //const idPost = await getPostById(postData[0].id);
-  //const tagData = await getAllTags();
-  //const tagsData = await getTagsByTagName(["タグテスト1", "タグテスト3"]);
-  //const postByTagName = await getPostsByTagName(["タグテスト1"]);
-
-  //const emptyTagsData = await getTagsByTagName([]);
-  //const emptyPostByTagName = await getPostsByTagName([]);
-
-  //console.log(emptyPostByTagName);
-  //console.log(emptyTagsData);
-
   return (
     <>
       <main className="h-full">
@@ -59,11 +40,7 @@ const Home: React.FC = async () => {
             </div>
           </div>
           <div className="pt-6 pb-8 px-4 h-full flex flex-col gap-12">
-            <header className="h-40 w-40 bg-black rounded-full flex flex-col justify-center items-center">
-              <nav className="text-white">Home</nav>
-              <nav className="text-white">Works</nav>
-              <nav className="text-white">About</nav>
-            </header>
+            <Header />
             <div className="flex flex-col items-center space-y-0 flex-grow">
               <div className="flex flex-col items-center gap-8 flex-grow">
                 <p>01</p>
