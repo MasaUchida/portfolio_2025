@@ -16,7 +16,7 @@ const Card: React.FC<CardType> = (props) => {
     "イズムを持つ必要があるかどうか。かう云ふ問題が出たのですが、実を云ふと、私わたしは生憎あいにくこの問題に大分だいぶ関係のありさうな岩野泡鳴いはのはうめい氏の論文なるものを読んでゐません。だからそれに対する私の答も、幾分新潮しんてう記者なり読者なりの考と、焦点が合はないだらうと思ひます。";
 
   return (
-    <div className="w-1/4 min-w-60 max-w-96">
+    <div className="min-w-60 max-w-96">
       <Image
         src={props.image ? `${props.image}` : "/test.png"}
         alt=""
