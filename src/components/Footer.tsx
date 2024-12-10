@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="border-2 border-top border-black bg-gray-100">
+    <footer className="border-t-2 border-black bg-gray-100">
       <div>
         <h3>サイトマップ</h3>
         <Link href={"/"}>Home</Link>
