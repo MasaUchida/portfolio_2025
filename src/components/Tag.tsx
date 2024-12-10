@@ -7,10 +7,18 @@ type CommponentTagType = PickTagType & {
 };
 
 const Card: React.FC<CommponentTagType> = ({ size = "small", ...args }) => {
+  const smallStyle = "h-6 text-xs leading-6";
+  const mediumStyle = "h-8 text-s leading-8";
+  const largeStyle = "h-10 text-base leading-10";
+
   return (
     <div
-      className={`px-2 rounded-full border border-black ${
-        size == "small" ? "h-6" : size == "medium" ? "h-8" : "h10"
+      className={`px-2 font-bold rounded-full border border-black ${
+        size == "small"
+          ? smallStyle
+          : size == "medium"
+          ? mediumStyle
+          : largeStyle
       }  inline-block`}
     >
       {`${args.tagName}`}
