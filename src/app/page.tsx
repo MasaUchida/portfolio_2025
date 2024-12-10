@@ -74,7 +74,7 @@ const Home: React.FC = async () => {
                 <p>06</p>
               </div>
               <div className="h-20 w-20 bg-gray-500 rounded-full">
-                <img src="#" alt="#" />
+                <Image src={"/#"} alt="#" width={80} height={80}></Image>
               </div>
             </div>
           </div>
