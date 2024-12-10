@@ -1,11 +1,8 @@
 import React from "react";
 import { TagType } from "../../types/postType";
 
-type OmitTagType = Omit<
-  TagType,
-  "createdAt" | "updatedAt" | "publishedAt" | "revisedAt"
->;
-type CommponentTagType = OmitTagType & {
+type PickTagType = Pick<TagType, "id" | "tagName">;
+type CommponentTagType = PickTagType & {
   size?: "small" | "medium" | "large";
 };
 
