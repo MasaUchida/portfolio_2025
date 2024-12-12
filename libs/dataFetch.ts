@@ -1,6 +1,6 @@
 import { client } from "./client";
 //import { Post,Tag } from "../types/postType";　一旦型は後回し
-import { Tag } from "../types/postType";
+import { TagType } from "../types/postType";
 
 ////////////local type////////////
 
@@ -80,7 +80,7 @@ export async function getPostsByTagName(tagNames: string[]) {
   if (tagNames.length === 0) return "tagNames is empty";
 
   const tags = await getTagsByTagName(tagNames);
-  const tagIds: string[] = tags.contents.map((tag: Tag) => {
+  const tagIds: string[] = tags.contents.map((tag: TagType) => {
     return tag.id;
   });
 
