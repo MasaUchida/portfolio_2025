@@ -20,6 +20,7 @@ export type PostType = MicroCmsApiReturnType & {
   description?: HTMLElement;
   carouselImage?: MicroCmsImageType;
   carouselDescription?: string;
+  projectPeriod: string;
 };
 
 export type TagType = MicroCmsApiReturnType & {
