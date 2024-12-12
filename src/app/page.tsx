@@ -3,7 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
 
+import { getAllPosts } from "../../libs/dataFetch";
+
 const Home: React.FC = async () => {
+  const posts = await getAllPosts();
+
+  console.log(posts);
+
   return (
     <>
       <main className="h-full">
@@ -18,26 +24,47 @@ const Home: React.FC = async () => {
                 className="bg-blue-800"
               ></Image>
             </div>
-            <div className="h-full w-full bg-blue-800 rounded-3xl border-2 border-black flex ">
-              <div className="px-10 py-6 flex flex-col">
-                <div className="h-full w-80 flex flex-col items-center flex-grow">
-                  <h2 className="text-2xl text-white">タイトル</h2>
-                  <p className="text-sm text-white">プロジェクト期間</p>
-                  <p className="text-base text-white">
-                    文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章文章
-                  </p>
-                </div>
-                <Link
-                  href={"/#"}
-                  className="w-full h-10 px-4 py-2 bg-black text-white text-sm rounded-full"
+
+            {posts.map((post) => {
+              return (
+                <div
+                  key={post.id}
+                  className="h-full w-full bg-blue-800 rounded-3xl border-2 border-black flex "
                 >
-                  プロダクトへ
-                </Link>
-              </div>
-              <div>
-                <Image src={"/#"} width={800} height={600} alt="hoge"></Image>
-              </div>
-            </div>
+                  <div className="px-10 py-6 flex flex-col">
+                    <div className="h-full w-80 flex flex-col items-center flex-grow">
+                      <h2 className="text-2xl text-white">{post.title}</h2>
+                      <p className="text-sm text-white">
+                        {post.projectPeriod
+                          ? post.projectPeriod
+                          : "ダミー期間だよ"}
+                      </p>
+                      <p className="text-base text-white">
+                        {post.carouselDescription
+                          ? post.carouselDescription
+                          : "ダミー文ですよ"}
+                      </p>
+                    </div>
+                    <Link
+                      href={"/#"}
+                      className="w-full h-10 px-4 py-2 bg-black text-white text-sm rounded-full"
+                    >
+                      プロダクトへ
+                    </Link>
+                  </div>
+                  <div>
+                    <Image
+                      src={
+                        post.carouselImage?.url ? post.carouselImage?.url : "/#"
+                      }
+                      alt="hoge"
+                      width={512}
+                      height={512}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="pt-6 pb-8 px-4 h-full flex flex-col gap-12">
             <Header />
