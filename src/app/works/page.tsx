@@ -5,7 +5,15 @@ import Tag from "../../components/Tag";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-const WorksPage: React.FC = () => {
+import { getAllPosts, getAllTags } from "../../../libs/dataFetch";
+import { TagType } from "../../../types/postType";
+
+const WorksPage: React.FC = async () => {
+  const posts = await getAllPosts();
+  const tags = await getAllTags();
+
+  console.log(posts);
+
   return (
     <>
       <main>
@@ -19,11 +27,18 @@ const WorksPage: React.FC = () => {
                 height={112}
               ></Image>
             </div>
-            <div className="flex gap-6">
-              <span>フィルタ</span>
-              <Tag id="1" tagName="Product" size="large"></Tag>
-              <Tag id="2" tagName="Project" size="large"></Tag>
-              <Tag id="3" tagName="WorkShop" size="large"></Tag>
+            <div className="flex gap-6 items-center">
+              <span className="font-bold">フィルタ</span>
+              {tags.map((tag) => {
+                return (
+                  <Tag
+                    key={tag.id}
+                    id={tag.id}
+                    tagName={tag.tagName}
+                    size="large"
+                  ></Tag>
+                );
+              })}
             </div>
           </div>
           <div className="p-10">
@@ -31,12 +46,22 @@ const WorksPage: React.FC = () => {
           </div>
         </div>
         <div className="px-10 pb-10 flex gap-12 flex-wrap justify-center">
-          <Card id="1" title="カード1" tagName="Product"></Card>
-          <Card id="2" title="カード2" tagName="Product"></Card>
-          <Card id="3" title="カード3" tagName="Product"></Card>
-          <Card id="4" title="カード4" tagName="Product"></Card>
-          <Card id="5" title="カード5" tagName="Product"></Card>
-          <Card id="6" title="カード6" tagName="Product"></Card>
+          {posts.map((post) => {
+            const postTags = post.tags?.map((tag: TagType) => {
+              return tag.tagName;
+            });
+
+            return (
+              <Card
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                projectPeriod={post.projectPeriod}
+                tagNames={postTags}
+                imageUrl={post.postImage?.url}
+              ></Card>
+            );
+          })}
         </div>
         <Footer />
       </main>

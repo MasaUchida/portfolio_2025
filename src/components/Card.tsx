@@ -4,10 +4,10 @@ import Image from "next/image";
 
 type CardType = {
   id: string;
-  image?: string;
+  imageUrl?: string;
   title: string;
   projectPeriod?: string;
-  tagName?: string;
+  tagNames?: string[];
   description?: string;
 };
 
@@ -18,7 +18,7 @@ const Card: React.FC<CardType> = (props) => {
   return (
     <div className="min-w-60 max-w-96">
       <Image
-        src={props.image ? `${props.image}` : "/test.png"}
+        src={props.imageUrl ? `${props.imageUrl}` : "/test.png"}
         alt=""
         width={640}
         height={320}
@@ -26,14 +26,18 @@ const Card: React.FC<CardType> = (props) => {
       />
       <div className="mb-2">
         <div className="mb-2">
-          <h3 className="text-lg font-bold">Title</h3>
+          <h3 className="text-lg font-bold">{props.title}</h3>
           <p className="text-xs">
             {props.projectPeriod
-              ? `${props.description}`
+              ? `プロジェクト期間：${props.projectPeriod}`
               : "プロジェクト期間：1年"}
           </p>
         </div>
-        <Tag id="1" tagName={props.tagName ? props.tagName : "tag"}></Tag>
+        {props.tagNames?.map((tagName, index) => {
+          return (
+            <Tag key={index} id="1" tagName={tagName ? tagName : "tag"}></Tag>
+          );
+        })}
       </div>
       <p className="text-sm font-semibold leading-7">
         {props.description ? `${props.description}` : dummyDescription}
