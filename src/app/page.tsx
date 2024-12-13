@@ -44,7 +44,7 @@ const Home: React.FC = async () => {
                       </p>
                     </div>
                     <Link
-                      href={"/#"}
+                      href={`/works/${post.postUri}`}
                       className="w-full h-10 px-4 py-2 bg-black text-white text-sm rounded-full"
                     >
                       プロダクトへ
@@ -75,8 +75,15 @@ const Home: React.FC = async () => {
                 <p>05</p>
                 <p>06</p>
               </div>
-              <div className="h-20 w-20 bg-gray-500 rounded-full">
-                <Image src={"/#"} alt="#" width={80} height={80}></Image>
+              <div className="h-20 w-20 bg-gray-500 rounded-full overflow-hidden">
+                <Link href={"/about"}>
+                  <Image
+                    src={"/my-icon.png"}
+                    alt="#"
+                    width={80}
+                    height={80}
+                  ></Image>
+                </Link>
               </div>
             </div>
           </div>
