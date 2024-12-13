@@ -1,50 +1,81 @@
 import React from "react";
-import { getAllPosts } from "../../../../libs/dataFetch";
+import { getAllPosts, getPostBySlug } from "../../../../libs/dataFetch";
 import Image from "next/image";
+import Link from "next/link";
 import Card from "../../../components/Card";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Tag from "../../../components/Tag";
+import { TagType } from "../../../../types/postType";
 
 type returnParamsValueType = { slug: string };
 type paramsType<T> = { params: Promise<T> };
+type TargetTagType = { tagName: string; tagId: string };
 
 const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
   const uriString = await params;
-  console.log(uriString);
+  const sideCardPosts = await getAllPosts();
+  const targetPost = await getPostBySlug(uriString.slug);
+  const postContents = targetPost.contents[0];
+  const targetTagObjects = postContents.tags.map((tag: TagType) => {
+    return { tagName: tag.tagName, tagId: tag.id };
+  });
 
   return (
     <>
       <main>
         <div className="p-10 flex gap-10">
           <div className="w-full flex flex-col gap-6">
-            <div className="h-10 border-2 border-black rounded-full">
-              Home&gt;works&gt;タイトル
+            <div className="px-4 h-10 border-2 border-black rounded-full leading-10">
+              <Link href={"/"}>Home</Link>
+              <span> &gt; </span>
+              <Link href={"/works"}>Works</Link>
+              <span> &gt; </span>
+              <span>{`${postContents.title}`}</span>
             </div>
             <div className="flex items-center">
-              <h1 className="text-4xl font-bold flex-grow">タイトル</h1>
-              <p>プロジェクト期間：</p>
-              <Tag id="1" tagName="Product" size="large" />
+              <h1 className="text-4xl font-bold flex-grow">{`${postContents.title}`}</h1>
+              <p>プロジェクト期間：{`${postContents.projectPeriod}`}</p>
+              {targetTagObjects.map((tag: TargetTagType) => {
+                return (
+                  <Tag
+                    key={tag.tagId}
+                    id={tag.tagId}
+                    tagName={`${tag.tagName}`}
+                    size="large"
+                  />
+                );
+              })}
             </div>
             <Image
-              src={"/#"}
+              src={`${
+                postContents.postImage
+                  ? postContents.postImage.url
+                  : "/test.png"
+              }`}
               alt="#"
               width={920}
               height={460}
               className="bg-gray-300 rounded-3xl"
             />
             <div>
-              <p>postの本体だよ</p>
-              <p>{`${uriString}`}</p>
+              <div
+                dangerouslySetInnerHTML={{ __html: postContents.description }}
+              ></div>
             </div>
           </div>
           <div className="flex flex-col items-center gap-10">
             <Header />
             <div className="flex flex-col gap-4">
-              <Card id="1" title="サイドカード1" />
-              <Card id="1" title="サイドカード2" />
-              <Card id="1" title="サイドカード3" />
-              <Card id="1" title="サイドカード4" />
+              {sideCardPosts.map((post) => {
+                return (
+                  <Card
+                    key={`${post.id}`}
+                    id={`${post.id}`}
+                    title={`${post.title}`}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>

@@ -7,12 +7,11 @@ import Footer from "../../components/Footer";
 
 import { getAllPosts, getAllTags } from "../../../libs/dataFetch";
 import { TagType } from "../../../types/postType";
+import Link from "next/link";
 
 const WorksPage: React.FC = async () => {
   const posts = await getAllPosts();
   const tags = await getAllTags();
-
-  console.log(posts);
 
   return (
     <>
@@ -52,14 +51,15 @@ const WorksPage: React.FC = async () => {
             });
 
             return (
-              <Card
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                projectPeriod={post.projectPeriod}
-                tagNames={postTags}
-                imageUrl={post.postImage?.url}
-              ></Card>
+              <Link href={`/works/${post.postUri}`} key={post.id}>
+                <Card
+                  id={post.id}
+                  title={post.title}
+                  projectPeriod={post.projectPeriod}
+                  tagNames={postTags}
+                  imageUrl={post.postImage?.url}
+                ></Card>
+              </Link>
             );
           })}
         </div>
