@@ -8,8 +8,6 @@ import { getAllPosts } from "../../libs/dataFetch";
 const Home: React.FC = async () => {
   const posts = await getAllPosts();
 
-  console.log(posts);
-
   return (
     <>
       <main className="h-full">
@@ -55,7 +53,7 @@ const Home: React.FC = async () => {
                   <div>
                     <Image
                       src={
-                        post.carouselImage?.url ? post.carouselImage?.url : "/#"
+                        post.carouselImage?.url ? post.carouselImage.url : "/#"
                       }
                       alt="hoge"
                       width={512}
@@ -89,28 +87,3 @@ const Home: React.FC = async () => {
 };
 
 export default Home;
-
-//<h1 className="font-bold text-5xl">hoge</h1>
-//<h2 className="font-bold text-2xl">postとtag一覧</h2>
-//<h3 className="font-bold text-xl">post一覧</h3>
-//{postData.map((post: Post) => {
-//  return <p key={post.id}>{post.title}</p>;
-//})}
-//<h3 className="font-bold text-xl">ポストをIDで呼び出す</h3>
-//<p>{idPost.title}</p>
-//<h3 className="font-bold text-xl">tagの名前一覧</h3>
-//{tagData.map((tag: Tag) => {
-//  return <p key={tag.id}>{tag.tagName}</p>;
-//})}
-//<h3 className="font-bold text-xl">
-//  tagを任意の名前の配列で呼び出す(「タグテスト1」と「タグテスト3」)
-//</h3>
-//{tagsData.contents.map((tag: Tag) => {
-//  return <p key={tag.id}>{tag.tagName}</p>;
-//})}
-//<h3 className="font-bold text-xl">
-//  postを任意のtagの名前の配列で呼び出す(「タグテスト1」)
-//</h3>
-//{postByTagName.contents.map((post: Post) => {
-//  return <p key={post.id}>{post.title}</p>;
-//})}
