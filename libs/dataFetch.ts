@@ -20,8 +20,8 @@ type FilterCondition = "and" | "or";
 type FilterQuery = {
   fieldId: string;
   filterType: FilterType;
-  itmes: string[];
-  condition: FilterCondition;
+  target: string | string[];
+  condition?: FilterCondition;
 };
 
 ////////////local function////////////
@@ -30,11 +30,17 @@ function makeFilterQuery(queryProps: FilterQuery) {
   //itemが１つ：fieldId[filterType]item0の文字列
   //itemが2つ以上：fieldId[filterType]item0の文字列[condition]fieldId[filterType]item1の文字列...
 
-  const query = queryProps.itmes
-    .map((item) => `${queryProps.fieldId}[${queryProps.filterType}]${item}`)
-    .join(`[${queryProps.condition}]`);
-
-  return query;
+  if (typeof queryProps.target === "string") {
+    return `${queryProps.fieldId}[${queryProps.filterType}]${queryProps.target}`;
+  } else {
+    const query = queryProps.target
+      .map(
+        (targetItem) =>
+          `${queryProps.fieldId}[${queryProps.filterType}]${targetItem}`
+      )
+      .join(`[${queryProps.condition}]`);
+    return query;
+  }
 }
 
 ////////////get post function////////////
@@ -43,6 +49,24 @@ export async function getPostById(id: string) {
   const data = await client.get({
     endpoint: "posts",
     contentId: id,
+  });
+
+  return data;
+}
+
+export async function getPostBySlug(slug: string) {
+  const querySetting: FilterQuery = {
+    fieldId: "postUri",
+    filterType: "equals",
+    target: slug,
+    condition: "or",
+  };
+
+  const query = makeFilterQuery(querySetting);
+
+  const data = await client.get({
+    endpoint: "posts",
+    queries: { filters: query },
   });
 
   return data;
@@ -62,7 +86,7 @@ export async function getPostsByTagId(tagIds: string[]) {
   const querySetting: FilterQuery = {
     fieldId: "tags",
     filterType: "contains",
-    itmes: tagIds,
+    target: tagIds,
     condition: "or",
   };
 
@@ -105,7 +129,7 @@ export async function getTagsByTagName(tagNames: string[]) {
   const querySetting: FilterQuery = {
     fieldId: "tagName",
     filterType: "equals",
-    itmes: tagNames,
+    target: tagNames,
     condition: "or",
   };
 
