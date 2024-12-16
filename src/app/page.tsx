@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
+import HomePostCard from "../components/HomePostCard";
 
 import { getAllPosts } from "../../libs/dataFetch";
 
@@ -12,55 +13,29 @@ const Home: React.FC = async () => {
     <>
       <main className="h-full">
         <div className="flex h-full">
-          <div className="w-full h-full py-8 px-6 flex flex-col gap-4 bg-blue-200">
-            <div className="h-32 w-full flex justify-center">
+          <div className="w-full h-full py-8 px-6 bg-blue-200 flex flex-col items-center gap-4">
+            <div className="w-full bg-blue-800">
               <Image
                 src="/main-logo.png"
                 width={980}
                 height={138}
                 alt="Picture of the author"
-                className="bg-blue-800"
+                className="m-auto"
               ></Image>
             </div>
 
             {posts.map((post) => {
+              console.log(post.carouselImage.url);
               return (
-                <div
-                  key={post.id}
-                  className="h-full w-full bg-blue-800 rounded-3xl border-2 border-black flex "
-                >
-                  <div className="px-10 py-6 flex flex-col">
-                    <div className="h-full w-80 flex flex-col items-center flex-grow">
-                      <h2 className="text-2xl text-white">{post.title}</h2>
-                      <p className="text-sm text-white">
-                        {post.projectPeriod
-                          ? post.projectPeriod
-                          : "ダミー期間だよ"}
-                      </p>
-                      <p className="text-base text-white">
-                        {post.carouselDescription
-                          ? post.carouselDescription
-                          : "ダミー文ですよ"}
-                      </p>
-                    </div>
-                    <Link
-                      href={`/works/${post.postUri}`}
-                      className="w-full h-10 px-4 py-2 bg-black text-white text-sm rounded-full"
-                    >
-                      プロダクトへ
-                    </Link>
-                  </div>
-                  <div>
-                    <Image
-                      src={
-                        post.carouselImage?.url ? post.carouselImage.url : "/#"
-                      }
-                      alt="hoge"
-                      width={512}
-                      height={512}
-                    />
-                  </div>
-                </div>
+                <HomePostCard
+                  id={post.id}
+                  title={post.title}
+                  projectPeriod={post.projectPeriod}
+                  tags={post.tags}
+                  carouselDescription={post.carouselDescription}
+                  carouselImageUrl={post.carouselImage.url}
+                  postUri={post.postUri}
+                />
               );
             })}
           </div>

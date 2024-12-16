@@ -13,7 +13,7 @@ const Card: React.FC<CommponentTagType> = ({ size = "small", ...args }) => {
 
   return (
     <div
-      className={`px-2 font-bold rounded-full border border-black ${
+      className={`px-2 font-bold rounded-full bg-white border border-black ${
         size == "small"
           ? smallStyle
           : size == "medium"

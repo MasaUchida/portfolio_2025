@@ -6,7 +6,7 @@ type MicroCmsApiReturnType = {
   revisedAt: string;
 };
 
-type MicroCmsImageType = {
+export type MicroCmsImageType = {
   url: string;
   height: number;
   width: number;
