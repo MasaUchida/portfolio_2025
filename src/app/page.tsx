@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
-import HomePostCard from "../components/HomePostCard";
 
 import { getAllPosts } from "../../libs/dataFetch";
-import Carousel from "../components/CarouselTest";
+import Carousel from "../components/Carousel";
+import CarouselPagination from "../components/CarouselPagination";
 
 const Home: React.FC = async () => {
   const posts = await getAllPosts();
@@ -31,12 +31,7 @@ const Home: React.FC = async () => {
             <Header />
             <div className="flex flex-col items-center space-y-0 flex-grow">
               <div className="flex flex-col items-center gap-8 flex-grow">
-                <p>01</p>
-                <p>02</p>
-                <p>03</p>
-                <p>04</p>
-                <p>05</p>
-                <p>06</p>
+                <CarouselPagination />
               </div>
               <div className="h-20 w-20 bg-gray-500 rounded-full overflow-hidden">
                 <Link href={"/about"}>
