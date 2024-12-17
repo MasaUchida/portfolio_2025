@@ -24,7 +24,9 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
         <div className="h-full flex-grow">
           <h2 className="text-2xl font-bold text-white">{props.title}</h2>
           <p className="mb-2 text-sm text-white">
-            {props.projectPeriod ? props.projectPeriod : "ダミー期間だよ"}
+            {props.projectPeriod
+              ? "プロジェクト期間：" + props.projectPeriod
+              : "ダミー期間だよ"}
           </p>
           <div className="mb-8">
             {props.tags?.map((tag) => {
@@ -33,7 +35,7 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
               );
             })}
           </div>
-          <p className="text-xs font-bold leading-relaxed text-white">
+          <p className="text-s font-bold leading-relaxed text-white">
             {props.carouselDescription
               ? props.carouselDescription
               : "ダミー文ですよ"}

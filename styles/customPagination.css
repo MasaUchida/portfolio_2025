@@ -1,0 +1,17 @@
+/* ページネーションボタン */
+.custom-pagination .custom-bullet {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: gray;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-pagination .custom-bullet.active {
+  color: black;
+  font-size: 2rem;
+  font-weight: 700;
+}
