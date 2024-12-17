@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import HomePostCard from "../components/HomePostCard";
 
 import { getAllPosts } from "../../libs/dataFetch";
+import Carousel from "../components/CarouselTest";
 
 const Home: React.FC = async () => {
   const posts = await getAllPosts();
@@ -23,22 +24,9 @@ const Home: React.FC = async () => {
                 className="m-auto"
               ></Image>
             </div>
-
-            {posts.map((post) => {
-              console.log(post.carouselImage.url);
-              return (
-                <HomePostCard
-                  id={post.id}
-                  title={post.title}
-                  projectPeriod={post.projectPeriod}
-                  tags={post.tags}
-                  carouselDescription={post.carouselDescription}
-                  carouselImageUrl={post.carouselImage.url}
-                  postUri={post.postUri}
-                />
-              );
-            })}
+            <Carousel slides={posts}></Carousel>
           </div>
+
           <div className="pt-6 pb-8 px-4 h-full flex flex-col gap-12">
             <Header />
             <div className="flex flex-col items-center space-y-0 flex-grow">

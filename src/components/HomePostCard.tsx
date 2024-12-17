@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { MicroCmsImageType, TagType } from "../../types/postType";
+import { TagType } from "../../types/postType";
 import Image from "next/image";
 import Tag from "../components/Tag";
 
@@ -18,9 +18,9 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
   return (
     <div
       key={props.id}
-      className="h-full w-full bg-blue-800 rounded-3xl border-2 border-black flex "
+      className="h-full w-full bg-blue-800 rounded-3xl border-2 border-black flex items-center overflow-hidden"
     >
-      <div className="w-1/3 px-10 py-16 flex flex-col">
+      <div className="h-full w-1/3 px-10 py-16 flex flex-col">
         <div className="h-full flex-grow">
           <h2 className="text-2xl font-bold text-white">{props.title}</h2>
           <p className="mb-2 text-sm text-white">
@@ -50,7 +50,8 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
         <Image
           src={props.carouselImageUrl ? props.carouselImageUrl : "/my-icon"}
           alt="hoge"
-          fill
+          width={800}
+          height={600}
         />
       </div>
     </div>
