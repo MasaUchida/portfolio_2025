@@ -39,7 +39,7 @@ const Card: React.FC<CardType> = (props) => {
           );
         })}
       </div>
-      <p className="text-sm font-semibold leading-7">
+      <p className="text-sm font-medium leading-7">
         {props.description ? `${props.description}` : dummyDescription}
       </p>
     </div>

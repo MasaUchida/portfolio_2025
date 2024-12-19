@@ -73,7 +73,7 @@ const Carousel: React.FC<CarouselType> = (props) => {
                 projectPeriod={slide.projectPeriod}
                 tags={slide.tags}
                 carouselDescription={slide.carouselDescription}
-                carouselImageUrl={slide.carouselImage.url}
+                carouselImageUrl={slide.carouselImage?.url}
                 postUri={slide.postUri}
               />
             </SwiperSlide>

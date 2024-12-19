@@ -8,6 +8,8 @@ import Footer from "../../../components/Footer";
 import Tag from "../../../components/Tag";
 import { TagType } from "../../../../types/postType";
 
+import "../../../../styles/postStyle.css";
+
 type returnParamsValueType = { slug: string };
 type paramsType<T> = { params: Promise<T> };
 type TargetTagType = { tagName: string; tagId: string };
@@ -33,7 +35,7 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
               <span> &gt; </span>
               <span>{`${postContents.title}`}</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <h1 className="text-4xl font-bold flex-grow">{`${postContents.title}`}</h1>
               <p>プロジェクト期間：{`${postContents.projectPeriod}`}</p>
               {targetTagObjects.map((tag: TargetTagType) => {
@@ -54,28 +56,37 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
                   : "/test.png"
               }`}
               alt="#"
-              width={920}
-              height={460}
-              className="bg-gray-300 rounded-3xl"
+              width={960}
+              height={480}
+              className="bg-gray-300 rounded-3xl border-2 border-black"
             />
-            <div>
-              <div
-                dangerouslySetInnerHTML={{ __html: postContents.description }}
-              ></div>
-            </div>
+            <div
+              className="post-discription"
+              dangerouslySetInnerHTML={{ __html: postContents.description }}
+            ></div>
           </div>
           <div className="flex flex-col items-center gap-10">
             <Header />
             <div className="flex flex-col gap-4">
-              {sideCardPosts.map((post) => {
-                return (
-                  <Card
-                    key={`${post.id}`}
-                    id={`${post.id}`}
-                    title={`${post.title}`}
-                  />
-                );
-              })}
+              {sideCardPosts
+                .filter((post) => {
+                  return post.postUri !== uriString.slug;
+                })
+                .map((post) => {
+                  console.log(post.carouselImage);
+                  return (
+                    <Link href={`/works/${post.postUri}`} key={`${post.id}`}>
+                      <Card
+                        id={`${post.id}`}
+                        title={`${post.title}`}
+                        imageUrl={`${
+                          post.carouselImage ? post.carouselImage.url : ""
+                        }`}
+                        description=" "
+                      />
+                    </Link>
+                  );
+                })}
             </div>
           </div>
         </div>
