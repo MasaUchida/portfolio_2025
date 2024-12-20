@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${NotoSansJP.variable} font-noto-sans-jp h-svh`}>
+      <body
+        className={`${NotoSansJP.variable} text-gray-900 text-red font-noto-sans-jp h-svh`}
+      >
         {children}
       </body>
     </html>
