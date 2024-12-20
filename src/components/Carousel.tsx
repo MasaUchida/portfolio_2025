@@ -29,28 +29,10 @@ const Carousel: React.FC<CarouselType> = (props) => {
   //paginationの設定
   const paginationSetting: PaginationOptions = {
     el: ".custom-pagination",
-    type: "custom",
+    type: "bullets",
     clickable: true,
-    renderCustom(swiper, current, total) {
-      setTimeout(() => {
-        const targetElements = document.querySelectorAll(".custom-bullet");
-        targetElements.forEach((element, index) => {
-          element.addEventListener("click", () => {
-            swiper.slideTo(index);
-          });
-        });
-      }, 0);
-
-      return `
-          ${Array.from({ length: total })
-            .map((_, index) => {
-              const isActive = current === index + 1 ? "active" : "";
-              return `<button class="custom-bullet ${isActive}">${
-                "0" + (index + 1)
-              }</button>`;
-            })
-            .join("")}
-        `;
+    renderBullet(index, className) {
+      return `<button class="${className}">0${index + 1}</button>`;
     },
   };
 

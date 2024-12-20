@@ -1,17 +1,28 @@
 /* ページネーションボタン */
-.custom-pagination .custom-bullet {
+.custom-pagination .swiper-pagination-bullet {
   display: inline-block;
   width: 2.5rem;
   height: 2.5rem;
   font-size: 1.25rem;
   font-weight: 700;
-  color: gray;
+  color: #949dad;
+  opacity: 1;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background: none;
 }
 
-.custom-pagination .custom-bullet.active {
+.custom-pagination .swiper-pagination-bullet-active {
   color: black;
   font-size: 2rem;
   font-weight: 700;
+}
+
+.swiper-vertical > .swiper-pagination-bullets,
+.swiper-pagination-vertical.swiper-pagination-bullets {
+  transform: none;
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 0;
 }
