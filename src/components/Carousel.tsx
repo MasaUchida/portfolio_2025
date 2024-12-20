@@ -21,6 +21,12 @@ const Carousel: React.FC<CarouselType> = (props) => {
     }
   }, []);
 
+  //slideのソート
+  const sortedSlides = props.slides.sort((a, b) => {
+    return a.order - b.order;
+  });
+
+  //paginationの設定
   const paginationSetting: PaginationOptions = {
     el: ".custom-pagination",
     type: "custom",
@@ -64,11 +70,12 @@ const Carousel: React.FC<CarouselType> = (props) => {
           maxHeight: "calc(100vh - 216px)",
         }}
       >
-        {props.slides.map((slide) => {
+        {sortedSlides.map((slide) => {
           return (
             <SwiperSlide key={slide.id}>
               <HomePostCard
                 id={slide.id}
+                order={slide.order}
                 title={slide.title}
                 projectPeriod={slide.projectPeriod}
                 tags={slide.tags}

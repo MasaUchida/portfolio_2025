@@ -6,6 +6,7 @@ import Tag from "../components/Tag";
 
 type HomePostCardType = {
   id: string;
+  order?: number;
   title: string;
   projectPeriod?: string;
   tags?: TagType[];
@@ -18,7 +19,17 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
   return (
     <div
       key={props.id}
-      className="h-full w-full bg-blue-700 rounded-3xl border-2 border-gray-900 flex items-center overflow-hidden"
+      className={`h-full w-full rounded-3xl border-2 border-gray-900 flex items-center overflow-hidden ${
+        props.order
+          ? props.order % 4 === 1
+            ? "bg-blue-700"
+            : props.order % 4 === 2
+            ? "bg-green-700"
+            : props.order % 4 === 3
+            ? "bg-red-700"
+            : "bg-yellow-700"
+          : "bg-gray-900"
+      }`}
     >
       <div className="h-full w-1/3 px-10 py-16 flex flex-col text-white-0">
         <div className="h-full flex-grow">
