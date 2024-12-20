@@ -22,7 +22,7 @@ const Card: React.FC<CardType> = (props) => {
         alt=""
         width={640}
         height={320}
-        className="rounded-3xl border-2 border-black mb-2"
+        className="rounded-3xl border-2 border-gray-900 mb-2"
       />
       <div className="mb-2">
         <div className="mb-2">

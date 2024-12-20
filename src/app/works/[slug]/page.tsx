@@ -28,7 +28,7 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
       <main>
         <div className="p-10 flex gap-10">
           <div className="w-full flex flex-col gap-6">
-            <div className="px-4 h-10 border-2 border-black rounded-full leading-10">
+            <div className="px-4 h-10 border-2 border-gray-900 rounded-full leading-10">
               <Link href={"/"}>Home</Link>
               <span> &gt; </span>
               <Link href={"/works"}>Works</Link>
@@ -58,7 +58,7 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
               alt="#"
               width={960}
               height={480}
-              className="bg-gray-300 rounded-3xl border-2 border-black"
+              className="bg-gray-300 rounded-3xl border-2 border-gray-900"
             />
             <div
               className="post-discription"

@@ -18,9 +18,9 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
   return (
     <div
       key={props.id}
-      className="h-full w-full bg-blue-800 rounded-3xl border-2 border-black flex items-center overflow-hidden"
+      className="h-full w-full bg-blue-700 rounded-3xl border-2 border-gray-900 flex items-center overflow-hidden"
     >
-      <div className="h-full w-1/3 px-10 py-16 flex flex-col">
+      <div className="h-full w-1/3 px-10 py-16 flex flex-col text-white-0">
         <div className="h-full flex-grow">
           <h2 className="text-2xl font-bold text-white">{props.title}</h2>
           <p className="mb-2 text-sm text-white">
@@ -35,7 +35,7 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
               );
             })}
           </div>
-          <p className="text-s font-bold leading-relaxed text-white">
+          <p className="text-sm font-medium leading-relaxed text-white">
             {props.carouselDescription
               ? props.carouselDescription
               : "ダミー文ですよ"}
@@ -43,7 +43,7 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
         </div>
         <Link
           href={`/works/${props.postUri}`}
-          className="w-full h-10 px-4 py-2 bg-black text-white text-center text-sm font-bold rounded-full"
+          className="w-full h-10 px-4 py-2 bg-gray-900 text-white-0 text-center text-sm font-bold rounded-full"
         >
           プロダクトへ
         </Link>
