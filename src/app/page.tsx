@@ -14,8 +14,8 @@ const Home: React.FC = async () => {
     <>
       <main className="h-full">
         <div className="flex h-full">
-          <div className="w-full h-full py-8 px-6 bg-blue-200 flex flex-col items-center gap-4">
-            <div className="w-full bg-blue-800">
+          <div className="w-full h-full py-8 px-6 bg-blue-600 flex flex-col items-center gap-4">
+            <div className="w-full bg-blue-700">
               <Image
                 src="/main-logo.png"
                 width={980}

@@ -17,7 +17,7 @@ const WorksPage: React.FC = async () => {
     <>
       <main>
         <div className="-mb-20 flex">
-          <div className="p-10 w-full h-80 bg-gray-300 border-b-2 border-r-2 border-black rounded-br-3xl">
+          <div className="p-10 w-full h-80 bg-gray-300 border-b-2 border-r-2 border-gray-900 rounded-br-3xl">
             <div className="mb-6">
               <Image
                 src={"/works-title.png"}
