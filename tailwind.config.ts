@@ -7,6 +7,9 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      "noto-sans-jp": ["var(--font-noto-sans-jp)", "sans-serif"],
+    },
     extend: {
       colors: {
         background: "var(--background)",
