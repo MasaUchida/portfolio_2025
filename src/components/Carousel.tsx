@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useColorContext } from "../context/ColorContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { PaginationOptions } from "swiper/types";
@@ -21,10 +22,21 @@ const Carousel: React.FC<CarouselType> = (props) => {
     }
   }, []);
 
+  //context
+  const { setOrderForColor } = useColorContext();
+
   //slideのソート
   const sortedSlides = props.slides.sort((a, b) => {
     return a.order - b.order;
   });
+
+  //handler
+  const hundleSlideChenge = (swiper: any) => {
+    const activeSlide = sortedSlides[swiper.activeIndex];
+    if (activeSlide) {
+      setOrderForColor(activeSlide.order);
+    }
+  };
 
   //paginationの設定
   const paginationSetting: PaginationOptions = {
@@ -47,6 +59,7 @@ const Carousel: React.FC<CarouselType> = (props) => {
         pagination={paginationSetting}
         loop
         modules={[Autoplay, Pagination]}
+        onSlideChange={hundleSlideChenge}
         style={{
           maxWidth: "1376px",
           maxHeight: "calc(100vh - 216px)",
