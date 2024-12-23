@@ -26,9 +26,9 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
   return (
     <>
       <main>
-        <div className="px-10 pt-10 pb-20  flex justify-center">
-          <div className="flex gap-10 max-w-[1200px]">
-            <div className="w-full flex flex-col gap-6">
+        <div className="px-10 pt-10 pb-20  ">
+          <div className="m-auto flex max-w-[1280px]">
+            <div className="flex flex-col gap-6 max-w-[calc(100%_-_22.5rem)]">
               <div className="px-4 h-10 border-2 border-gray-900 rounded-full leading-10">
                 <Link href={"/"}>Home</Link>
                 <span> &gt; </span>
@@ -66,7 +66,7 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
                 dangerouslySetInnerHTML={{ __html: postContents.description }}
               ></div>
             </div>
-            <div className="flex flex-col items-center gap-10">
+            <div className="ml-10 w-80 flex flex-col items-center gap-10">
               <Header />
               <div className="flex flex-col gap-4">
                 {sideCardPosts
