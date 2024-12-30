@@ -54,7 +54,7 @@ const Carousel: React.FC<CarouselType> = (props) => {
         spaceBetween={64}
         slidesPerView={1}
         speed={800}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 4000 }}
         direction="vertical"
         pagination={paginationSetting}
         modules={[Autoplay, Pagination]}
