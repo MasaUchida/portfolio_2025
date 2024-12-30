@@ -24,8 +24,8 @@ const Home: React.FC = async () => {
                 alt="Picture of the author"
                 className="m-auto"
               ></Image>
-              <Carousel slides={posts}></Carousel>
             </ContextualBackGround>
+            <Carousel slides={posts}></Carousel>
           </ContextualBackGround>
         </ColorProvider>
         <div className="pt-6 pb-8 px-4 h-full flex flex-col gap-12">
@@ -34,13 +34,13 @@ const Home: React.FC = async () => {
             <div className="flex flex-col items-center gap-8 flex-grow">
               <CarouselPagination />
             </div>
-            <div className="h-20 w-20 bg-gray-500 rounded-full overflow-hidden">
+            <div className="h-16 w-16 bg-gray-500 rounded-full overflow-hidden">
               <Link href={"/about"}>
                 <Image
                   src={"/my-icon.png"}
                   alt="#"
-                  width={80}
-                  height={80}
+                  width={64}
+                  height={64}
                 ></Image>
               </Link>
             </div>
