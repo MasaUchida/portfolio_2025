@@ -57,7 +57,6 @@ const Carousel: React.FC<CarouselType> = (props) => {
         autoplay={{ delay: 3000 }}
         direction="vertical"
         pagination={paginationSetting}
-        loop
         modules={[Autoplay, Pagination]}
         onSlideChange={hundleSlideChenge}
         style={{
