@@ -6,6 +6,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: ["bg-blue-600", "bg-red-600", "bg-green-600", "bg-yellow-600"],
   theme: {
     fontFamily: {
       "noto-sans-jp": ["var(--font-noto-sans-jp)", "sans-serif"],
