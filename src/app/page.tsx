@@ -15,7 +15,7 @@ const Home: React.FC = async () => {
     <main className="h-full">
       <div className="flex h-full">
         <ColorProvider>
-          <ContextualBackGround className="w-full h-full py-8 px-6 flex flex-col items-center gap-4">
+          <ContextualBackGround className="h-full py-8 px-6 flex flex-col items-center gap-4">
             <ContextualBackGround className="w-full" colorNumber={700}>
               <Image
                 src="/main-logo.png"
@@ -28,7 +28,7 @@ const Home: React.FC = async () => {
             <Carousel slides={posts}></Carousel>
           </ContextualBackGround>
         </ColorProvider>
-        <div className="pt-6 pb-8 px-4 h-full flex flex-col gap-12">
+        <div className="pt-6 pb-8 px-4 w-48 h-full flex flex-col gap-12">
           <Header />
           <div className="flex flex-col items-center space-y-0 flex-grow">
             <div className="flex flex-col items-center gap-8 flex-grow">

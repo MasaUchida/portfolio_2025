@@ -74,14 +74,13 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
                     return post.postUri !== uriString.slug;
                   })
                   .map((post) => {
-                    console.log(post.carouselImage);
                     return (
                       <Link href={`/works/${post.postUri}`} key={`${post.id}`}>
                         <Card
                           id={`${post.id}`}
                           title={`${post.title}`}
                           imageUrl={`${
-                            post.carouselImage ? post.carouselImage.url : ""
+                            post.postImage ? post.postImage.url : ""
                           }`}
                           projectPeriod={`${post.projectPeriod}`}
                           tagNames={post.tags?.map(
