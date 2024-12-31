@@ -31,7 +31,7 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
           : "bg-gray-900"
       }`}
     >
-      <div className="h-full w-[calc(30%_+_4rem)] px-10 py-16 flex flex-col text-white-0">
+      <div className="h-full w-[calc(30%_+_80px)] px-10 py-16 flex flex-col text-white-0">
         <div className="h-full flex-grow">
           <h2 className="text-2xl font-bold text-white">{props.title}</h2>
           <p className="mb-2 text-sm text-white">
@@ -59,12 +59,13 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
           プロダクトへ
         </Link>
       </div>
-      <div className="relative">
+      <div className="flex justify-center w-full h-full overflow-hidden">
         <Image
           src={props.carouselImageUrl ? props.carouselImageUrl : "/my-icon"}
           alt="hoge"
           width={800}
           height={600}
+          className="object-cover"
         />
       </div>
     </div>
