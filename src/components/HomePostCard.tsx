@@ -65,7 +65,7 @@ const HomePostCard: React.FC<HomePostCardType> = (props) => {
           alt="hoge"
           width={800}
           height={600}
-          className="object-cover"
+          className="object-cover w-full"
         />
       </div>
     </div>
