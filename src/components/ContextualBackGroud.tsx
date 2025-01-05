@@ -13,7 +13,7 @@ const ContextualBackGround: React.FC<PropsType> = (props) => {
   const { orderForColor } = useColorContext();
   const order = orderForColor;
 
-  console.log(order);
+  //console.log(order);
 
   const bgColor =
     order % 4 === 1
