@@ -15,8 +15,8 @@ const Home: React.FC = async () => {
     <main className="h-full">
       <div className="flex h-full">
         <ColorProvider>
-          <ContextualBackGround className="h-full py-8 px-6 flex flex-col items-center gap-4">
-            <ContextualBackGround className="w-full" colorNumber={700}>
+          <ContextualBackGround className="w-full h-full py-8 px-6 flex flex-col items-center gap-8">
+            <ContextualBackGround className="w-full h-30" colorNumber={700}>
               <Image
                 src="/main-logo.png"
                 width={980}

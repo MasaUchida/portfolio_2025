@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import FilterTag from "../../components/FilterTag";
+import FilterTags from "../../components/FilterTags";
 import WorksList from "../../components/WorksList";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -17,7 +18,7 @@ const WorksPage: React.FC = async () => {
       <main>
         <FilterIdProvider>
           <div className="-mb-20 flex">
-            <div className="p-10 w-full h-80 bg-gray-300 border-b-2 border-r-2 border-gray-900 rounded-br-3xl">
+            <div className="px-10 pt-6 pb-10 w-full h-80 bg-gray-300 border-b-2 border-r-2 border-gray-900 rounded-br-3xl">
               <div className="mb-6">
                 <Image
                   src={"/works-title.png"}
@@ -28,23 +29,14 @@ const WorksPage: React.FC = async () => {
               </div>
               <div className="flex gap-6 items-center">
                 <span className="font-bold">フィルタ</span>
-                {tags.map((tag) => {
-                  return (
-                    <FilterTag
-                      key={tag.id}
-                      id={tag.id}
-                      tagName={tag.tagName}
-                      size="large"
-                    />
-                  );
-                })}
+                <FilterTags tags={tags} />
               </div>
             </div>
-            <div className="p-10">
+            <div className="px-4 pt-6 pb-10">
               <Header />
             </div>
           </div>
-          <div className="px-10 pb-10 flex gap-12 flex-wrap justify-center">
+          <div className="px-10 pb-20 flex gap-12 flex-wrap justify-center">
             <WorksList posts={posts} />
           </div>
           <Footer />

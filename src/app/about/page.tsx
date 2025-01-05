@@ -7,7 +7,7 @@ const AboutPage: React.FC = () => {
   return (
     <main className="h-svh flex flex-col">
       <div className="flex -mb-24">
-        <div className="w-full p-10 rounded-br-3xl border-r-2 border-b-2 border-gray-900 bg-gray-300">
+        <div className="w-full px-10 pt-6 pb-10 rounded-br-3xl border-r-2 border-b-2 border-gray-900 bg-gray-300">
           <h1>
             <Image
               src={"/about-title.png"}
@@ -18,7 +18,7 @@ const AboutPage: React.FC = () => {
             />
           </h1>
         </div>
-        <div className="p-10">
+        <div className="px-4 pt-6 pb-10">
           <Header />
         </div>
       </div>
