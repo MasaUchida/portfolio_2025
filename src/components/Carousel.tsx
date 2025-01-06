@@ -4,14 +4,15 @@ import React, { useEffect } from "react";
 import { useColorContext } from "../context/ColorContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import { PaginationOptions } from "swiper/types";
+import { PaginationOptions, Swiper as SwiperType } from "swiper/types";
+import HomePostCard from "./HomePostCard";
+import { PostType } from "../../types/postType";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../../styles/customPagination.css";
-import HomePostCard from "./HomePostCard";
 
 type CarouselType = {
-  slides: any[];
+  slides: PostType[];
 };
 
 const Carousel: React.FC<CarouselType> = (props) => {
@@ -31,7 +32,7 @@ const Carousel: React.FC<CarouselType> = (props) => {
   });
 
   //handler
-  const hundleSlideChenge = (swiper: any) => {
+  const hundleSlideChenge = (swiper: SwiperType) => {
     const activeSlide = sortedSlides[swiper.activeIndex];
     if (activeSlide) {
       setOrderForColor(activeSlide.order);

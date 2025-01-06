@@ -1,6 +1,6 @@
 import { client } from "./client";
 //import { Post,Tag } from "../types/postType";　一旦型は後回し
-import { TagType } from "../types/postType";
+import { PostType, TagType } from "../types/postType";
 
 ////////////local type////////////
 
@@ -72,7 +72,7 @@ export async function getPostBySlug(slug: string) {
   return data;
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<PostType[]> {
   const data = await client.getAllContents({
     endpoint: "posts",
   });
@@ -115,7 +115,7 @@ export async function getPostsByTagName(tagNames: string[]) {
 
 ////////////get tag function////////////
 
-export async function getAllTags() {
+export async function getAllTags(): Promise<TagType[]> {
   const data = await client.getAllContents({
     endpoint: "tags",
   });

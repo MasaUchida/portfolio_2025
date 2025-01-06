@@ -11,7 +11,6 @@ type PropType = {
 
 const FilterTags: React.FC<PropType> = (props) => {
   const { filterId } = useFilterIdContext();
-  console.log(filterId);
 
   return (
     <>

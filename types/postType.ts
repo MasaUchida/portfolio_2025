@@ -13,6 +13,7 @@ export type MicroCmsImageType = {
 };
 
 export type PostType = MicroCmsApiReturnType & {
+  order: number;
   title: string;
   postUri: string;
   postImage?: MicroCmsImageType;
