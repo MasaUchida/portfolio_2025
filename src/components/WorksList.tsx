@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "../components/Card";
 import Link from "next/link";
-import { TagType } from "../../types/postType";
+import { PostType, TagType } from "../../types/postType";
 import { useFilterIdContext } from "../context/FilterContext";
 
 type PropsType = {
-  posts: any[];
+  posts: PostType[];
 };
 
 const WorksList: React.FC<PropsType> = (props) => {
@@ -19,7 +19,7 @@ const WorksList: React.FC<PropsType> = (props) => {
 
   const displayedPosts = filterId
     ? sortedPosts.filter((post) => {
-        return post.tags.some((tag: TagType) => {
+        return post.tags?.some((tag: TagType) => {
           return filterId === tag.id;
         });
       })

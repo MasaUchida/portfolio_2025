@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useFilterIdContext } from "../context/FilterContext";
 import { TagType } from "../../types/postType";
 
 type PickTagType = Pick<TagType, "id" | "tagName">;

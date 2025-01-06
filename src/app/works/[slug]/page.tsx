@@ -73,6 +73,9 @@ const PostPage = async ({ params }: paramsType<returnParamsValueType>) => {
                   .filter((post) => {
                     return post.postUri !== uriString.slug;
                   })
+                  .sort((a, b) => {
+                    return a.order - b.order;
+                  })
                   .map((post) => {
                     return (
                       <Link href={`/works/${post.postUri}`} key={`${post.id}`}>

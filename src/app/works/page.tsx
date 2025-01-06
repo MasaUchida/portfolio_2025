@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import FilterTag from "../../components/FilterTag";
 import FilterTags from "../../components/FilterTags";
 import WorksList from "../../components/WorksList";
 import Header from "../../components/Header";
