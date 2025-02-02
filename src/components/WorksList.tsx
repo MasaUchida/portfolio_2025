@@ -11,23 +11,25 @@ type PropsType = {
 };
 
 const WorksList: React.FC<PropsType> = (props) => {
-  const sortedPosts = props.posts.sort((a, b) => {
-    return a.order - b.order;
-  });
-
   const { filterId } = useFilterIdContext();
 
   const displayedPosts = filterId
-    ? sortedPosts.filter((post) => {
-        return post.tags?.some((tag: TagType) => {
-          return filterId === tag.id;
-        });
-      })
-    : sortedPosts;
+    ? props.posts
+        .filter((post) => {
+          return post.tags?.some((tag: TagType) => {
+            return filterId === tag.id;
+          });
+        })
+        .sort((a, b) => {
+          return a.order - b.order;
+        })
+    : props.posts.sort((a, b) => {
+        return a.order - b.order;
+      });
 
   return (
     <>
-      {displayedPosts.map((post) => {
+      {displayedPosts?.map((post) => {
         const postTags = post.tags?.map((tag: TagType) => {
           return tag.tagName;
         });
